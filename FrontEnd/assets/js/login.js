@@ -35,6 +35,7 @@ function sendLoginRequest(email, password) {
       window.location.href = "index.html"; // Redirige l'utilisateur vers la page "index.html"
     })
     .catch((error) => {
+      console.error(error);
       if (!errorDisplayed) {
         // Vérifie si aucun message d'erreur n'a été affiché
         errorMessage(); // Apl la fonction pour afficher un message d'erreur

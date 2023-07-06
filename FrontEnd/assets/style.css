@@ -287,6 +287,11 @@ input[type="submit"] {
   color: #b1663c;
 }
 
+footer nav ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2em;
+}
 /* Bouton filtres */
 
 .buttons {
@@ -294,6 +299,7 @@ input[type="submit"] {
   justify-content: center;
 }
 .buttons > button {
+  font-family: "Syne";
   min-width: 100px;
   font-weight: 700;
   font-size: 16px;
