@@ -37,7 +37,7 @@ function sendLoginRequest(email, password) {
     .catch((error) => {
       console.error(error);
       if (!errorDisplayed) {
-        // Vérifie si aucun message d'erreur n'a été affiché
+        // Vérifie si aucun message d'erreur n'a été affiché inverse la valeur boleen
         errorMessage(); // Apl la fonction pour afficher un message d'erreur
         errorDisplayed = true; // Définit la variable errorDisplayed à true pour indiquer qu'un message d'erreur a été affiché
       }

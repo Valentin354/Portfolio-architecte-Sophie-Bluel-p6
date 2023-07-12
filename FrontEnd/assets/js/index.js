@@ -13,7 +13,7 @@ function creaPortfolio(data) {
     const imgTitle = document.createElement("figcaption");
     imgTitle.innerHTML = data[i].title;
 
-    //lier les contenuss aux parents
+    //lier les contenus aux parents
     gallery.appendChild(card);
     card.appendChild(image);
     card.appendChild(imgTitle);
