@@ -7,6 +7,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
@@ -14,22 +21,69 @@
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
+    <div class="overlay"></div>
+
+    <div class="modal">
+      <a class="return-modal"><i class="fa-solid fa-arrow-left"></i></a>
+      <a class="close-modal"><i class="fa-solid fa-xmark"></i></a>
+
+      <div class="modal-header">
+        <h3 id="modal-title"></h3>
+      </div>
+      <div class="modal-body"></div>
+      <form action="#" class="formAddPicture">
+        <div class="add-picture">
+          <img id="img-preview" src="" alt="" />
+          <i class="fa-regular fa-image icone-img"></i>
+          <input type="file" id="file" />
+          <label for="file" class="button-add-picture">+ Ajouter photo</label>
+
+          <p id="info-add-picture">jpg,png : 4mo max</p>
+        </div>
+
+        <label for="titleNewPicture">Titre</label>
+        <input type="text" id="titleNewPicture" />
+        <p>Catégorie</p>
+        <select name="categorie" id="categorie">
+          <option value=""></option>
+        </select>
+
+        <div class="modal-footer"></div>
+        <div class="modal-line"></div>
+
+        <input class="display-none" type="submit" value="valider" id="valid" />
+      </form>
+      <input type="submit" value="Ajouter une photo" id="add_photo" />
+      <p id="DeleteAllGalerie">Supprimer la galerie</p>
+    </div>
     <header>
-      <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+      <div class="admin-header">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <p>Mode edition</p>
+        <button>Publier les changements</button>
+      </div>
+
+      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
-          <li><a href="index.html">projets</a></li>
-          <li><a href="index.html#contact">contact</a></li>
-          <li><a class="log" href="./login.html">login</a></li>
+          <li><a href="./index.html">projets</a></li>
+          <li><a href="#contact">contact</a></li>
+          <li><a href="./login.html" id="buttonLog">login</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
     </header>
+
     <main>
       <section id="introduction">
         <figure>
           <img src="./assets/images/sophie-bluel.png" alt="" />
+          <div class="modif-intro">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <p>modifier</p>
+          </div>
         </figure>
+
         <article>
           <h2>Designer d'espace</h2>
           <p>
@@ -49,16 +103,16 @@
           </p>
         </article>
       </section>
+
       <section id="portfolio">
-        <h2>Mes Projets</h2>
-        <div class="buttons">
-          <button class="filter-button" data-filter="0">Tous</button>
-          <button class="filter-button" data-filter="1">Objets</button>
-          <button class="filter-button" data-filter="2">Appartements</button>
-          <button class="filter-button" data-filter="3">
-            Hotels et Restaurants
-          </button>
+        <div class="container-modif-portfolio">
+          <h2>Mes Projets</h2>
+          <div class="modif-portfolio">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <p>modifier</p>
+          </div>
         </div>
+        <div id="categoriesFilter"></div>
         <div class="gallery"></div>
       </section>
       <section id="contact">
@@ -83,6 +137,6 @@
         </ul>
       </nav>
     </footer>
-    <script src="./assets/js/index.js"></script>
+    <script src="./assets/index.js"></script>
   </body>
 </html>
