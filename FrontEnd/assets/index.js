@@ -194,6 +194,8 @@ const openGalerieModal = async () => {
   // Ferme la modal si on clique en dehors de celle-ci
   const overlay = document.querySelector(".overlay");
   overlay.addEventListener("click", closeGalerieModal);
+  document.getElementById("add_photo").style.display = "block";
+  document.getElementById("DeleteAllGalerie").style.display = "block";
 };
 
 // -----------------------------------
@@ -266,7 +268,7 @@ const addNewPicture = async (event) => {
   formData.append("category", category);
 
   await fetchAddPhoto(formData); // Appel à la fonction pour ajouter le projet en utilisant l'API POST
-  window.location.href = "index.html"; // Redirection vers la page principale après l'ajout d'un nouveau projet
+  closeGalerieModal();
 };
 
 // -----------------------------------
@@ -315,6 +317,7 @@ const openAddphotoModal = async () => {
 
   // Ajouter un nouveau projet lorsque le bouton "Valider" est cliqué
   buttonValid.addEventListener("click", addNewPicture);
+  updateValidButton();
 };
 
 // -----------------------------------
@@ -370,7 +373,6 @@ const modalAddPictureBuild = () => {
 
   // Afficher la modal d'ajout de projet lorsqu'on clique sur "Ajouter une photo"
   buttonAddPhoto.addEventListener("click", () => {
-    buttonValid.style.background = "rgb(167, 167, 167)";
     formAddPicture.style.display = "flex";
     returnModal.style.display = "block";
     buttonValid.style.display = "block";
@@ -465,8 +467,13 @@ const updateValidButton = () => {
   const validButton = document.getElementById("valid");
   const isValid = checkerAddWork();
 
-  if (isValid) {
-    validButton.style.background = "#1D6154"; // Si tous les champs sont remplis, changer la couleur du bouton en vert
+  if (!isValid) {
+    //validButton.style.background = "#1D6154"; // Si tous les champs sont remplis, changer la couleur du bouton en vert
+    validButton.disabled = true;
+    validButton.style.cursor = "not-allowed";
+  } else {
+    validButton.disabled = false;
+    validButton.style.cursor = "pointer"; 
   }
 };
 
