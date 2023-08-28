@@ -7,6 +7,7 @@ const titleGalery = document.getElementById("modal-title");
 const returnModal = document.querySelector(".return-modal");
 const modifPortfolio = document.querySelector(".modif-portfolio");
 const formAddPicture = document.querySelector(".formAddPicture");
+let activeFilterButton = null;
 
 //-----------------
 // Récupération des catégories depuis l'API (pour les filtres)
@@ -40,31 +41,40 @@ const displayCategories = async () => {
     addButtonFilter.textContent = categorie.name;
     addButtonFilter.setAttribute("id", categorie.id);
 
-    // Ajout d'un écouteur d'événement pour le clic sur le bouton de filtre
+    if (categorie.id === -1) {
+      addButtonFilter.classList.add("active");
+      activeFilterButton = addButtonFilter;
+    }
+
     addButtonFilter.addEventListener("click", (event) => {
-      // Récupérer l'ID de la catégorie associée au bouton cliqué
-      const idCategorie = event.target.id;
+      const clickedButton = event.target;
+
+      if (activeFilterButton) {
+        activeFilterButton.classList.remove("active");
+      }
+
+      clickedButton.classList.add("active");
+      activeFilterButton = clickedButton;
+
+      const idCategorie = clickedButton.id;
       let objetWork = null;
 
-      // Si la catégorie "Tous" est sélectionnée, afficher tous les projets, sinon filtrer les projets par catégorie
       if (idCategorie == -1) {
         objetWork = works;
       } else {
-        // Filtrer les projets pour obtenir seulement ceux appartenant à la catégorie sélectionnée
         objetWork = works.filter(function (objet) {
           return objet.category.id == idCategorie;
         });
       }
 
-      // Vider la galerie pour empêcher que de nouveaux projets s'ajoutent lors du filtrage
       galery.innerHTML = "";
 
-      // Afficher les projets filtrés dans la galerie
       objetWork.forEach((work, index) => {
         const workElement = createWorkElement(work);
         galery.appendChild(workElement);
       });
     });
+
     categoriesFilter.appendChild(addButtonFilter);
   });
 };
@@ -88,7 +98,7 @@ const displayWorks = async () => {
   const works = await fetchWork();
   // Vider la galerie pour afficher les nouveaux projets
   galery.innerHTML = "";
-  // Pour chaque projet, créer un élément de projet (figure) avec image et légende, puis l'ajouter à la galerie
+  // Pour chaque projet, créer un élément de projet  avec image et légende, puis l'ajouter à la galerie
   works.forEach((work, index) => {
     const workElement = createWorkElement(work);
     galery.appendChild(workElement);
@@ -96,7 +106,7 @@ const displayWorks = async () => {
 };
 
 // -------------------------
-// Fonction pour créer l'élément d'un projet (figure) avec image et légende
+// Fonction pour créer l'élément d'un projet  avec image et légende
 // -------------------------
 const createWorkElement = (work, modal = false) => {
   // Création des éléments HTML pour l'affichage du projet
@@ -473,7 +483,7 @@ const updateValidButton = () => {
     validButton.style.cursor = "not-allowed";
   } else {
     validButton.disabled = false;
-    validButton.style.cursor = "pointer"; 
+    validButton.style.cursor = "pointer";
   }
 };
 
